@@ -1,0 +1,14 @@
+Package: thickmatch
+Type: Package
+Title: Threshold Matching for Optimal Matching with Thick Description in Observational Studies
+Version: 0.3.2
+Author: Ruoqi Yu
+Maintainer: Ruoqi Yu <ruoqiyu125@gmail.com>
+Description: Conducts several closest matched pairs to strengthen a matched quantitative comparison of many pairs by thick description in observational studies.
+    Yu, R., Small, D. S., Harding, D., Aveldanes, J., & Rosenbaum, P. R. (2021). <doi: 10.1080/2330443X.2021.1919260>.
+License: MIT+file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: rcbalance, stats, MASS, plyr,methods, DiPs
+Suggests: optmatch
+Note: One minimum cost flow problem may have several or many solutions that are equivalent in providing the same minimum total or mean cost. Minor differences between computers or implementations may have the minor consequence of altering which equivalent solution is produced.

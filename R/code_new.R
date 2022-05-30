@@ -1,0 +1,50 @@
+dm1=dmaha(data$treatment,Xmat,rank=T)
+dm1$d=dm1$d+5000*dmaha(data$treatment,cbind(data$PoliceActOffArrestedYes,data$OffCourtSupervision,
+                                        data$PriorHxDVYes,data$SP2OffenderGOAYes),rank=T)$d
+dm2=DiPs::addcaliper(dm1,data$treatment,data$logit.propscore,c(-0.3,0.3))
+t=proc.time()
+eps=threshold(dist=dm2,z=data$treatment,
+              dat=data,select_num=5,tol=0.001)$epsilon
+proc.time()-t
+eps
+m<-threshold_match(dist=dm2,z=data$treatment,dat=data,
+                   min.control=1,eps=eps)
+dim(m$sdata)
+dim(m$data)
+m$sdata$SP2ID
+
+Xmat.new=cbind(Xmat,data$kill_shoot,data$child_pregnant)
+dm1=dmaha(data$treatment,Xmat.new,rank=T)
+dm1$d=dm1$d+10000*dmaha(data$treatment,cbind(data$PoliceActOffArrestedYes,data$OffCourtSupervision,
+                                         data$PriorHxDVYes,data$SP2OffenderGOAYes),rank=T)$d
+dm1$d=dm1$d+100*dmaha(data$treatment,data$SP2ComplSexF,rank=T)$d
+dm2=DiPs::addcaliper(dm1,data$treatment,data$logit.propscore,c(-0.3,0.3))
+
+t=proc.time()
+eps=threshold(dist=dm2,z=data$treatment,
+              dat=data,select_num=5,tol=0.001)$epsilon
+proc.time()-t
+eps
+m<-threshold_match(dist=dm2,z=data$treatment,dat=data,
+                   min.control=1,eps=eps)
+dim(m$sdata)
+dim(m$data)
+m$sdata$SP2ID
+
+Xmat.new=cbind(Xmat,data$exrelationship)
+dm1=dmaha(data$treatment,Xmat.new,rank=T)
+dm1$d=dm1$d+5000*dmaha(data$treatment,cbind(data$PoliceActOffArrestedYes,data$OffCourtSupervision,
+                                        data$PriorHxDVYes,data$SP2OffenderGOAYes),rank=T)$d
+dm1$d=dm1$d+2000*dmaha(data$treatment,cbind(data$exrelationship),rank=T)$d
+dm2=DiPs::addcaliper(dm1,data$treatment,data$logit.propscore,c(-0.3,0.3))
+
+t=proc.time()
+eps=threshold(dist=dm2,z=data$treatment,
+              dat=data,select_num=5,tol=0.001)$epsilon
+proc.time()-t
+eps
+m<-threshold_match(dist=dm2,z=data$treatment,dat=data,
+                   min.control=1,eps=eps)
+dim(m$sdata)
+dim(m$data)
+m$sdata$SP2ID

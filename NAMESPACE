@@ -1,0 +1,7 @@
+exportPattern("^[[:alpha:]]+")
+importFrom("rcbalance", "callrelax")
+importFrom("stats", "as.formula", "cov", "var", "sd", "model.matrix", "mahalanobis")
+importFrom("MASS", "ginv")
+importFrom("plyr", "laply", "count", "daply")
+importFrom("methods", "is")
+importFrom("DiPs", "addcaliper","check")
